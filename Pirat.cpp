@@ -27,11 +27,11 @@ int main(void)
     cout << "Привет! ";
     for (askint = 0; askint < 1;) //    Повторное предложение сыграть реализовано через цикл завершение программы при askint >= 1 
     {
-        cout << "Хочешь сыграть в угадай число? \n \n";
+        cout << "Хочешь сыграть в угадай число? (Y or n, Да или Нет?)\n \n";
         cin >> answer;
         if (answer == "Y" || answer == "y" || answer == "да" || answer == "Да" || answer == "ДА" || answer == "blitztest")
         {
-            if (answer == "blitztest")
+            if (answer == "blitztest") //проверяется ввод чит-кода
             {
                 cheatcode = 1;
                 system("cls"); //Запускает системную команду "cls" - очистить экран консоли
@@ -49,11 +49,11 @@ int main(void)
             if (answer == "N" || answer == "n" || answer == "нет" || answer == "Нет")
             {
                 system("cls");
-                cout << "Очень жаль... \n \n";
+                cout << "Очень жаль... \n \nWritten by Sergey Prochukhan.\n";
                 askint = 1;
             }
             else
-                //  В случае некорректного ввода ответа пользователем программа ругается и завершается
+                //  В случае некорректного ввода ответа пользователем программа ругается и повторно задает вопрос
             {
                 system("cls");
                 cout << "Я не понимаю твой ответ... \n \n";
@@ -76,9 +76,9 @@ int game(void)
     int randominteger = randomizer(rangenengine); // Выделена область памяти для целого числа полученного в результате работы объекта класса uniform_int_distribution с использование движка Mersenne Twister Engine
     for (int count1 = 1; count1 <= 3; count1++)
     {
-        if (cheatcode == 1)
+        if (cheatcode == 1) // условие при введенном чит коде
         {
-            cout << "Даю подсказку, это число: " + to_string(randominteger) + "\n";
+            cout << "Даю подсказку, это число: " + to_string(randominteger) + "\n\n";
             cheatcode = 0;
         }
         else
@@ -91,11 +91,13 @@ int game(void)
             if (count1 < 3)
             {
                 system("cls"); 
-                cout << "Не угадал! У тебя осталось " + to_string(3 - count1) + " попытки \n";              
+                cout << "Не угадал! У тебя осталось " + to_string(3 - count1) + " попытки \n\n";              
             }
             else
             {
                 cout << "Не угадал! Это было число: " + to_string(randominteger) + " \n \n";
+                system("pause");
+                system("cls");
                 return 0;
             }
                 
@@ -112,4 +114,4 @@ int game(void)
 }
 
 
-//Written by Sergei Prochukhan
+//Written by Sergey Prochukhan
