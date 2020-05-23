@@ -1,4 +1,4 @@
-﻿/*Программа предлагает пользователю угадать число в диапазоне от 1 до 10*/
+/*Программа предлагает пользователю угадать число в диапазоне от 1 до 10*/
 
         /*      TASKS
             Прописать код более масштабной проверки ввода пользователем
@@ -14,7 +14,7 @@
 using namespace std;    //Для работы с классом string
 
 int game(void); //Функция с описанием самой игры
-
+int cheatcode;
 int main(void)
 
 {
@@ -29,10 +29,19 @@ int main(void)
     {
         cout << "Хочешь сыграть в угадай число? \n \n";
         cin >> answer;
-        if (answer == "Y" || answer == "y" || answer == "да" || answer == "Да" || answer == "ДА")
+        if (answer == "Y" || answer == "y" || answer == "да" || answer == "Да" || answer == "ДА" || answer == "blitztest")
         {
-            system("cls"); //Запускает системную команду "cls" - очистить экран консоли
-            game();
+            if (answer == "blitztest")
+            {
+                cheatcode = 1;
+                system("cls"); //Запускает системную команду "cls" - очистить экран консоли
+                game();
+            }
+            else
+            {
+                system("cls"); //Запускает системную команду "cls" - очистить экран консоли
+                game();
+            }
         }
         else
         {
@@ -60,21 +69,30 @@ int game(void)
 {
     cout << "Отлично! Я загадал число от 1 до 10 у тебя 3 попытки отгадать \n \n";
     string inputstr; // Объявлена переменная для хранения ввода пользователем
-    cout << "Итак, какое же число я загадал?\n";
+    cout << "Итак, какое же число я загадал?\n\n";
     random_device randev; //    Подключение генератора случайных целых чисел
     mt19937_64 rangenengine(randev()); //   Подключение движка Mersenne Twister Engine к генератору случайных целых чисел
     uniform_int_distribution <> randomizer (1, 10); // Объявление объекта класса uniform_int_distribution который производит случайное целое число в интервале от 1 до 10
     int randominteger = randomizer(rangenengine); // Выделена область памяти для целого числа полученного в результате работы объекта класса uniform_int_distribution с использование движка Mersenne Twister Engine
     for (int count1 = 1; count1 <= 3; count1++)
     {
+        if (cheatcode == 1)
+        {
+            cout << "Даю подсказку, это число: " + to_string(randominteger) + "\n";
+            cheatcode = 0;
+        }
+        else
+        {}
         cin >> inputstr;
         int strtoint = stoi(inputstr); //   Объявлена целочисленная переменная с последующим преобразование введенной пользователем строки в целочисленный тип данных
         //  Временный костыль для проверки работоспособности кода программы на текущем этапе далее необходимо удалить либо закомментить
-        //cout << "Даю подсказку, это число: " + to_string(randominteger) + "\n";
         if (strtoint != randominteger)
         {
             if (count1 < 3)
-                cout << "Не угадал! У тебя осталось " + to_string(3 - count1) + " попытки \n";
+            {
+                system("cls"); 
+                cout << "Не угадал! У тебя осталось " + to_string(3 - count1) + " попытки \n";              
+            }
             else
             {
                 cout << "Не угадал! Это было число: " + to_string(randominteger) + " \n \n";
