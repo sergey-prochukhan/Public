@@ -61,12 +61,11 @@ int game(void)
     cout << "Отлично! Я загадал число от 1 до 10 у тебя 3 попытки отгадать \n \n";
     string inputstr; // Объявлена переменная для хранения ввода пользователем
     cout << "Итак, какое же число я загадал?\n";
-    int count1;
     random_device randev; //    Подключение генератора случайных целых чисел
     mt19937_64 rangenengine(randev()); //   Подключение движка Mersenne Twister Engine к генератору случайных целых чисел
     uniform_int_distribution <> randomizer (1, 10); // Объявление объекта класса uniform_int_distribution который производит случайное целое число в интервале от 1 до 10
     int randominteger = randomizer(rangenengine); // Выделена область памяти для целого числа полученного в результате работы объекта класса uniform_int_distribution с использование движка Mersenne Twister Engine
-    for (count1 = 1; count1 <= 3; count1++)
+    for (int count1 = 1; count1 <= 3; count1++)
     {
         cin >> inputstr;
         int strtoint = stoi(inputstr); //   Объявлена целочисленная переменная с последующим преобразование введенной пользователем строки в целочисленный тип данных
