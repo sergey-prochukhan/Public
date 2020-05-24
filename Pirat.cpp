@@ -49,7 +49,7 @@ int main(void)
             if (answer == "N" || answer == "n" || answer == "нет" || answer == "Нет")
             {
                 system("cls");
-                cout << "Очень жаль... \n \nWritten by Sergey Prochukhan.\n";
+                cout << "Очень жаль... \nНу ты заходи... Если что... \n \nWritten by Sergey Prochukhan.\n";
                 askint = 1;
             }
             else
@@ -73,7 +73,7 @@ int game(void)
     random_device randev; //    Подключение генератора случайных целых чисел
     mt19937_64 rangenengine(randev()); //   Подключение движка Mersenne Twister Engine к генератору случайных целых чисел
     uniform_int_distribution <> randomizer (1, 10); // Объявление объекта класса uniform_int_distribution который производит случайное целое число в интервале от 1 до 10
-    int randominteger = randomizer(rangenengine); // Выделена область памяти для целого числа полученного в результате работы объекта класса uniform_int_distribution с использование движка Mersenne Twister Engine
+    int randominteger = randomizer(rangenengine); // Вызвана функция генерации случайного числа в соответствии с rangenengine, результат сохранён в randominteger
     for (int count1 = 1; count1 <= 3; count1++)
     {
         if (cheatcode == 1) // условие при введенном чит коде
@@ -95,6 +95,7 @@ int game(void)
             }
             else
             {
+                system("cls");
                 cout << "Не угадал! Это было число: " + to_string(randominteger) + " \n \n";
                 system("pause");
                 system("cls");
@@ -104,6 +105,7 @@ int game(void)
         }
         else
         {
+            system("cls");
             cout << "Обалдеть!!! Ты угадал на " + to_string(count1) + " попытке!!! \n \n";
             return 0;
         }
